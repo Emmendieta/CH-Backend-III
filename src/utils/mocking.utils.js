@@ -1,5 +1,6 @@
 import { faker } from "@faker-js/faker";
 import bcrypt from "bcrypt";
+import mongoose from "mongoose";
 
 const roles = ['user', 'admin'];
 
@@ -25,7 +26,7 @@ export const generateMockPets = (count = 1) => {
             name: faker.person.firstName(),
             specie: faker.animal.type(),
             birthDate: faker.date.birthdate(),
-            owner: faker.person.fullName(),
+            owner: new mongoose.Types.ObjectId(),
             adopted: false
         });
     };
