@@ -44,7 +44,7 @@
 
 .petsUlLiDiv {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     margin: 5px 0;
     flex-wrap: wrap;
 }

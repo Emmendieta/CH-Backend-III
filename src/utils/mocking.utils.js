@@ -27,6 +27,7 @@ export const generateMockPets = (count = 1) => {
             specie: faker.animal.type(),
             birthDate: faker.date.birthdate(),
             owner: new mongoose.Types.ObjectId(),
+            image: "/img/1671549990926-coderDog.jpg",
             adopted: false
         });
     };
