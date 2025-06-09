@@ -10,7 +10,6 @@ export const generateMocksUsers = (count = 1) => {
             first_name: faker.person.firstName(),
             last_name: faker.person.lastName(),
             email: faker.internet.email(),
-            age: faker.number.int({ min: 18, max: 99 }),
             password: bcrypt.hashSync('coder123', 10),
             role: roles[Math.floor(Math.random() * roles.length)],
             pets: []
@@ -26,6 +25,7 @@ export const generateMockPets = (count = 1) => {
             name: faker.person.firstName(),
             specie: faker.animal.type(),
             birthDate: faker.date.birthdate(),
+            owner: faker.person.fullName(),
             adopted: false
         });
     };
