@@ -1,4 +1,4 @@
-const divNavBarButtons = document.getElementById("navBarbuttons");
+const divNavBarButtons = document.getElementById("navBarButtons");
 
 const verifyCurrent = async () => {
     try {
@@ -9,6 +9,7 @@ const verifyCurrent = async () => {
         let url = "/api/auth/current";
         let response = await fetch(url, opts);
         response = await response.json();
+        console.log(response)
         //En caso de esta logueado, se muestran las opciones correspondientes:
         if (response.error) {
             divNavBarButtons.innerHTML = `
@@ -23,7 +24,7 @@ const verifyCurrent = async () => {
                 <button class="btn btn-outline-success" type="submit" id="navBarBtnSignOut">Sign Out</button>
             `;
         };
-        document.getElementById("navBarBtnSingOut").addEventListener("click", async() => {
+        document.getElementById("navBarBtnSignOut").addEventListener("click", async() => {
             try {
                 //
                 opts = {

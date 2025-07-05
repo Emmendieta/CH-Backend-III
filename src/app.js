@@ -14,6 +14,8 @@ import dbConnect from './helpers/dbConnect.helper.js';
 import appRouter from './routes/app.router.js';
 import __dirname from './utils/index.js';
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
+import pathHandler from './middlewares/pathHandler.mid.js';
+import errorHandler from './middlewares/errorHandler.mid.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -46,3 +48,7 @@ app.use('/api/sessions', sessionsRouter);
 app.use('/api/mocks', mocksRouter); */
 
 app.listen(PORT, ready);
+
+app.use("/", appRouter);
+app.use(pathHandler);
+app.use(errorHandler);

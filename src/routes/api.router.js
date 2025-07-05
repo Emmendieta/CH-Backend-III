@@ -1,8 +1,8 @@
-import { Router } from "express";
 import usersRouter from "./api/users.router.js";
 import petsRouter from "./api/pets.router.js";
 import mocksRouter from "./mocks.router.js";
 import RouterHelper from "../helpers/router.helper.js";
+import authRouter from "../routes/api/auth.router.js";
 
 class ApiRouter extends RouterHelper {
     constructor() {
@@ -10,9 +10,10 @@ class ApiRouter extends RouterHelper {
         this.init();
     };
     init = () => {
-        this.router.use("/users", usersRouter);
-        this.router.use("/pets", petsRouter);
-        this.router.use("/mocks", mocksRouter);
+        this.use("/users", usersRouter);
+        this.use("/pets", petsRouter);
+        this.use("/mocks", mocksRouter);
+        this.use("/auth", authRouter);
     };
 };
 

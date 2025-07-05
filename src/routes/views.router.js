@@ -9,7 +9,7 @@ class ViewsRouter extends RouterHelper {
     init = () => {
         this.render("/", ["public"], viewsController.indexView);
         this.render("/pets", ["public"], viewsController.petsView);
-        this.render("/users", ["public"], viewsController.userView);
+        this.render("/users", ["admin"], viewsController.userView);
     };
 
     getRouter = () => this.router;
