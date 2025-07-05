@@ -1,0 +1,59 @@
+#usersDivHead {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#usersDivH1 {
+    margin: 15px;
+    color: green;
+}
+
+#usersGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#usersGrid li {
+    display: flex;
+    justify-content: center;
+}
+
+.usersDivCard {
+    width: 100%;
+    max-width: 18rem;
+    transition: 0.5s;
+}
+
+.usersDivCard:hover {
+    box-shadow: rgb(85, 85, 85) 5px 5px 10px 2px;
+    transition: 0.5s;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.usersUlLiDiv {
+    display: flex;
+    align-items: stretch;
+    margin: 5px 0;
+    flex-wrap: wrap;
+}
+
+.usersUlLih3 {
+    margin-right: 5px;
+    font-size: 15px;
+}
+
+.card-text {
+    font-size: 15px;
+}
