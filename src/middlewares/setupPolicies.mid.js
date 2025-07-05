@@ -3,6 +3,7 @@ import UserRepository from "../repository/UserRepository.js";
 
 const setupPolicies = (policies) => async (req, res, next) => {
     try {
+        if (!Array.isArray(policies)) policies = [policies];
         //Si la polictica es publica puedo dejar pasar:
         if(policies.includes("public")) { return next(); };
         //Si las politicas no son publicas, necesito recuperar el token:
@@ -11,6 +12,7 @@ const setupPolicies = (policies) => async (req, res, next) => {
         //Verifico el token:
         const data = verifyToken(token); 
         const { user_id, email, role } = data;
+        if(!user_id || !email || !role) { return res.json401(); }
         const listRoles = {
             USER: policies.includes("user"),
             ADMIN: policies.includes("admin")

@@ -1,12 +1,26 @@
-import { Router } from 'express';
 import usersController from '../../controllers/users.controller.js';
+import RouterHelper from '../../helpers/router.helper.js';
 
-const usersRouter = Router();
+class UserRouter extends RouterHelper {
+    constructor() {
+        super();
+        this.init();
+    };
+    init = () => {
+        this.read('/', usersController.getAllUsers);
+        this.read('/:uid', usersController.getUser);
+        this.update('/:uid', usersController.updateUser);
+        this.destroy('/:uid', usersController.deleteUser);
+    };
+}
 
-usersRouter.get('/',usersController.getAllUsers);
-usersRouter.get('/:uid',usersController.getUser);
-usersRouter.put('/:uid',usersController.updateUser);
-usersRouter.delete('/:uid',usersController.deleteUser);
+const usersRouter = (new UserRouter()).getRouter();
+/* const usersRouter = Router();
+
+usersRouter.get('/', usersController.getAllUsers);
+usersRouter.get('/:uid', usersController.getUser);
+usersRouter.put('/:uid', usersController.updateUser);
+usersRouter.delete('/:uid', usersController.deleteUser); */
 
 
 export default usersRouter;

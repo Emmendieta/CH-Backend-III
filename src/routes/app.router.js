@@ -1,18 +1,17 @@
 import { Router } from "express";
 import apiRouter from "./api.router.js";
 import viewsRouter from "./views.router.js";
+import RouterHelper from "../helpers/router.helper.js";
 
-class AppRouter  {
+class AppRouter extends RouterHelper {
     constructor() {
-        this.router = Router();
+        super();
         this.init();
     };
     init = () => {
         this.router.use("/", viewsRouter);
         this.router.use("/api", apiRouter);
     };
-
-    getRouter = () => this.router;
 };
 
 const appRouter = (new AppRouter()).getRouter();

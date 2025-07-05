@@ -20,9 +20,9 @@ class RouterHelper {
     });
 
     //Funcion para Renderizar:
-    applyMiddlewaresRender = (middlewaresRender) => middlewaresRender.map(midRender => async(req, res, next) => {
+    applyMidlewaresRender = (middlewaresRender) => middlewaresRender.map(midRender => async(req, res, next) => {
         try {
-            
+            await midRender(req, res, next);
         } catch (error) {
             res.status(error.statusCode || 500).render("error", { error });
         }
@@ -41,7 +41,7 @@ class RouterHelper {
     //Use:
     use = (path, ...middlewares) => this.router.use(path, this.applyMiddlewares(middlewares));
     //Render:
-    render = (path, policies, ...middlewaresRender) => this.router.get(path, setupPolicies(policies), this.applyMiddlewaresRender(middlewaresRender));
+    render = (path, policies, ...middlewaresRender) => this.router.get(path, setupPolicies(policies), this.applyMidlewaresRender(middlewaresRender));
 };
 
 export default RouterHelper;

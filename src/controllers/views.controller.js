@@ -6,6 +6,13 @@ class ViewController {
         this.pService = petsService;
     };
 
+    indexView = async(req, res) => {
+        const pets = await this.pService.getAll();
+        if (pets.length === 0) { res.json404("Not pets avalible!").render("error"); }
+        const user = req.user || null;
+        res.status(200).render("index", { pets, isAdmin: user?.role === "admin"});
+    };
+
     petsView = async (req, res) => {
         const pets = await this.pService.getAll();
         if (pets.length === 0 ) { res.status(404).json({message: "Pets not found!"}); }
