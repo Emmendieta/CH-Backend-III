@@ -8,7 +8,7 @@ class UserRouter extends RouterHelper {
     };
 
     init = () => {
-        this.read("/:uid", ["user", "admin"], usersController.getUser);
+        this.read("/:uid", ["user", "admin"], usersController.getUserById);
         this.read("/", ["admin"], usersController.getAllUsers);
         this.create("/", ["public"], usersController.createUser);
         this.update("/:uid", ["user", "admin"], usersController.updateUser);
