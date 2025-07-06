@@ -1,19 +1,22 @@
 import express from 'express';
 import { engine } from "express-handlebars";
 import cookieParser from 'cookie-parser';
-import path from "path";
+import path from 'path';
+import __dirname from './utils/utils.js';
 import "dotenv/config.js";
-import Handlebars from 'handlebars';
 import argvsHelper from "./helpers/argvs.helper.js";
 import morgan from "morgan";
 import indexRouter from './routes/index.router.js';
 import pathHandler from './middlewares/pathHandler.mid.js';
 import errorHandler from './middlewares/errorHandler.mid.js';
+import compression from 'compression';
+import dbConnect from './helpers/dbConnect.helper.js';
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8000;
+
 const ready = async () => {
-    if (proceess.env.PERSISTENCE === "mongo") {
+    if (process.env.PERSISTENCE === "mongo") {
         await dbConnect(process.env.LINK_MONGODB);
         console.log(`Server ready on port ${PORT} in mode: ${argvsHelper.mode}`);
     }
@@ -21,23 +24,23 @@ const ready = async () => {
     else { console.log("Métodos pendientes para memory!"); }
 };
 
-app.listen(PORT, ready);
-
 /* Engine Settings */
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
-app.set("views", __dirname + "/src/views"); 
+app.set("views", path.join(__dirname, "../views")); 
 
 /* Middlewares Settings */
 
-app.use(cookieParser(process.env.SECRET));
-app.use(express.json());
 app.use(compression());
+app.use(cookieParser(process.env.SECRET));
+//app.use(cookieParser());
+app.use(express.json());
 app.use(express.urlencoded( { extended: true } ));
 app.use(express.static("public"));
 app.use(morgan("dev"));
 
+app.listen(PORT, ready);
 
 /* Router Settings */
 
