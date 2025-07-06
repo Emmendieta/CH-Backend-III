@@ -8,7 +8,7 @@ class AuthController {
     loginCB = async (req, res) => {
         const { _id } = req.user;
         const opts = { maxAge: 24 * 60 * 60 * 1000 };
-        res.cookies("token", req.user.token, opts).json200(_id, "Logged In Success!!!");
+        res.cookie("token", req.user.token, opts).json200(_id, "Logged In Success!!!");
     };
 
     singOutCB = async (req, res) => res.clearCookie("token").json200(req.user._id, "Sing Out Success!!!");
