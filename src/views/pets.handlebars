@@ -1,0 +1,48 @@
+<head>
+    <link rel="stylesheet" href="/css/pets.css">
+</head>
+
+<div id="petsDivHead">
+    <h1 id="petsDivH1">Pets List</h1>
+</div>
+
+<section>
+    <ul id="petsGrid">
+        {{#each pets}}
+        <li>
+            <div class="card petsDivCard">
+                <div class="petsUlLiDiv">
+                    <img src="{{this.image}}" class="card-img-top object-fit-cover" alt="{{this._id}}">
+                </div>
+                <div class="card-body">
+                    <div class="petsUlLiDiv">
+                        <h3 class="petsUlLih3">Name:</h3>
+                        <h3 class="card-text petsUlLih3" id="petsTitleId">{{this.name}}</h3>
+                    </div>
+                    <div class="petsUlLiDiv">
+                        <h3 class="petsUlLih3">Specie:</h3>
+                        <h3 class="card-text petsUlLih3">{{this.specie}}</h3>
+                    </div>
+                    <div class="petsUlLiDiv">
+                        <h3 class="petsUlLih3">BirthDate:</h3>
+                        <h3 class="card-text petsUlLih3">{{this.birthDate}}</h3>
+                    </div>
+                    <div class="petsUlLiDiv">
+                        <h3 class="petsUlLih3">Adopted:</h3>
+                        <h3 class="card-text petsUlLih3">{{this.adopted}}</h3>
+                    </div>
+                    <div class="petsUlLiDiv">
+                        <h3 class="petsUlLih3">Owner:</h3>
+                        <h3 class="card-text petsUlLih3">{{this.owner}}</h3>
+                    </div>
+                    <div class="petsUlLiDiv">
+                        <a href="/details/{{this._id}}" class="btn btn-primary">More Details</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</section>
+
+<script src="/scripts/pets.js"></script>
