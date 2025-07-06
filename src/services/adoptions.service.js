@@ -11,4 +11,4 @@ class AdoptionService extends Service {
 
 const adoptionsService = new AdoptionService(adoptionRepository);
 
-export default adoptionRepository;
+export default adoptionsService;

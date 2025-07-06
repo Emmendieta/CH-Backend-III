@@ -7,7 +7,6 @@ class UserService extends Service {
     };
     //Métodos particulares de Users:
 
-
 };
 
 const usersService = new UserService(usersRepository);
