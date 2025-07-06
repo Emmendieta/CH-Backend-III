@@ -1,0 +1,43 @@
+<head>
+    <link rel="stylesheet" href="/css/details.css">
+</head>
+
+<div id="detailsDivTitle">
+    <section id="detailsDivSectTop">
+        <h2 id="detailsh2Title">Details of Pet</h2>
+    </section>
+    <section id="detailsDivSectMiddle">
+        <div class="detailsUlLiDiv">
+            <img class="detailsUlLih6" src="{{pet.image}}" alt="{{pet._id}}">
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Id: </h3>
+            <h3 class="detailsUlLih3" id="petId">{{pet._id}}</h3>
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Name: </h3>
+            <h3 class="detailsUlLih3">{{pet.name}}</h3>
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Specie: </h3>
+            <h3 class="detailsUlLih3">{{pet.specie}}</h3>
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Birth Date: </h3>
+            <h3 class="detailsUlLih3">{{pet.birthDate}}</h3>
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Adopted: </h3>
+            <h3 class="detailsUlLih3" id="petAdopted">{{pet.adopted}}</h3>
+        </div>
+        <div class="detailsUlLiDiv">
+            <h3 class="detailsUlLih3">Owner: </h3>
+            <h3 class="detailsUlLih3">{{pet.owner}}</h3>
+        </div>
+        <div class="detailsUlLiDivBottom">
+            <button class="btn btn-outline-success" id="btnAdopt">Adopt</button>
+        </div>
+    </section>
+</div>
+
+<script src="/scripts/details.js"></script>

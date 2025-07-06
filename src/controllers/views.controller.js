@@ -1,6 +1,8 @@
 import petsService from "../services/pets.service.js";
 import usersService from "../services/user.service.js";
 import adoptionsService from "../services/adoptions.service.js";
+import { isValidObjectId } from "mongoose";
+import moment from "moment";
 
 class ViewsController {
     constructor() {
@@ -24,6 +26,28 @@ class ViewsController {
         res.status(200).render("pets", { pets });
     };
 
+    detailsView = async (req, res) => {
+        const { pid } = req.params;
+        if (!isValidObjectId(pid)) { res.status(404).render("error", { error: "Verify pet Id!" }); };
+        const pet = await this.pService.readById(pid);
+        if (!pet) { res.status(404).render("error", { error: "Pet not Found!" }); };
+        res.status(200).render("details", { pet });
+    };
+
+    newPetView = async (req, res) => {
+        res.status(200).render("pet", { pet: null });
+    };
+
+    editPetView = async (req, res) => {
+        const { pid } = req.params;
+        if (!isValidObjectId(pid)) { return res.status(404).render("error", { error: "Verify pet Id!" }); };
+        let pet = await this.pService.readById(pid);
+        if (!pet) { return res.status(404).render("error", { error: "Pet not Found!" }); };
+        pet.birthDate = moment(pet.birthDate).format("YYYY-MM-DD");
+        console.log(pet);
+        res.status(200).render("pet", { pet });
+    };
+
     /* USERS VIEWS */
 
     userView = async (req, res) => {
@@ -36,7 +60,16 @@ class ViewsController {
 
     loginView = async (req, res) => res.status(200).render("login");
 
-    registerView = async ( req, res) => res.status(200).render("register");
+    registerView = async (req, res) => res.status(200).render("register");
+
+    profileView = async (req, res) => {
+        const { user } = req;
+        res.status(200).render("profile", { user });
+    };
+
+    updateView = async (req, res) => {
+        res.status(200).render("update-user");
+    };
 
 };
 

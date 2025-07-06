@@ -3,13 +3,15 @@ import mongoose from "mongoose";
 const collection = 'Pets';
 
 const schema = new mongoose.Schema({
-    name: { type: String, require: true },
-    specie: { type: String, require: true },
+    name: { type: String, required: true },
+    specie: { type: String, required: true },
     birthDate: Date,
     adopted: { type: Boolean, default: false },
     owner: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'Users',
+        required: false,
+        default: null
     },
     image: String
 });

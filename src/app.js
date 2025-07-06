@@ -11,6 +11,7 @@ import pathHandler from './middlewares/pathHandler.mid.js';
 import errorHandler from './middlewares/errorHandler.mid.js';
 import compression from 'compression';
 import dbConnect from './helpers/dbConnect.helper.js';
+import moment from 'moment';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -26,7 +27,11 @@ const ready = async () => {
 
 /* Engine Settings */
 
-app.engine("handlebars", engine());
+app.engine("handlebars", engine({
+    helpers: {
+        formatDate: (date) => moment(date).format("YYYY-MM-DD"),
+    },
+}));
 app.set("view engine", "handlebars");
 app.set("views", path.join(__dirname, "../views")); 
 
@@ -34,7 +39,6 @@ app.set("views", path.join(__dirname, "../views"));
 
 app.use(compression());
 app.use(cookieParser(process.env.SECRET));
-//app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded( { extended: true } ));
 app.use(express.static("public"));

@@ -10,7 +10,7 @@ class PetsDTO {
         this.specie = data.specie;
         this.birthDate = data.birthDate;
         this.adopted = data.adopted;
-        this.owner = data.owner || false;
+        this.owner = data.owner || null;
         this.image = data.image
         if (PERSISTENCE !== "mongo") {
             this.createdAt = new Date();

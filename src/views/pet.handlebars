@@ -1,0 +1,44 @@
+<head>
+    <link rel="stylesheet" href="/css/newPet.css">
+</head>
+
+<div id="newPetDivTitle">
+    <section id="newPetDivSectTop">
+        <h2 id="newPeth2Title">{{#if pet}}Edit Pet{{else}}New Pet{{/if}}</h2>
+    </section>
+    <section id="newPetDivSectMiddle">
+        <div class="newPetUlLiDiv">
+            {{#if pet}}
+            <input type="hidden" id="petId" value="{{pet._id}}">
+            {{/if}}
+            <h3 class="newPetUlLih3">Image: </h3>
+            <input type="text" id="newPetUlLiImage" value="{{#if pet}}{{pet.image}}{{/if}}">
+        </div>
+        <div class="newPetUlLiDiv">
+            <h3 class="newPetUlLih3">Name: </h3>
+            <input type="text" id="newPetUlLihName" value="{{#if pet}}{{pet.name}}{{/if}}">
+        </div>
+        <div class="newPetUlLiDiv">
+            <h3 class="newPetUlLih3">Birth Day: </h3>
+            <input type="date" id="newPetUlLihBirthDay" value="{{#if pet}}{{pet.birthDate}}{{/if}}">
+        </div>
+        <div class="newPetUlLiDiv">
+            <h3 class="newPetUlLih3">Adopted: </h3>
+            <input type="checkbox" id="newPetUlLihAdopted" {{#if pet.adopted}}checked{{/if}}>
+        </div>
+        <div class="newPetUlLiDiv">
+            <h3 class="newPetUlLih3">Specie: </h3>
+            <input type="text" id="newPetUlLihSpecie" value="{{#if pet}}{{pet.specie}}{{/if}}">
+        </div>
+        <div class="newPetUlLiDiv">
+            <h3 class="newPetUlLih3">Owner: </h3>
+            <input type="text" id="newPetUlLihOwner" value="{{#if pet.owner}}{{pet.owner}}{{/if}}">
+        </div>
+        <div class="newPetUlLiDivBottom">
+            <button class="btn btn-outline-success" id="btnCreatePet">{{#if pet}}Update Pet{{else}}Create
+                Pet{{/if}}</button>
+        </div>
+    </section>
+</div>
+
+<script src="/scripts/newPet.js"></script>
