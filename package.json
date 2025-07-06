@@ -17,6 +17,7 @@
     "@handlebars/allow-prototype-access": "^1.0.5",
     "bcrypt": "^6.0.0",
     "chai": "^5.2.0",
+    "commander": "^14.0.0",
     "compress": "^0.99.0",
     "compression": "^1.8.0",
     "cookie-parser": "^1.4.7",
