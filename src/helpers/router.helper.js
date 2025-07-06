@@ -1,11 +1,11 @@
 import { Router } from "express";
-import setupPolicies from "../middlewares/setupPolicies.js";
-import setupResponses from "../middlewares/setupResponse.js";
+import setupPolicies from "../middlewares/setupPolicies.mid.js";
+import setupResponses from "../middlewares/setupResponse.mid.js";
 
 class RouterHelper {
     constructor() {
         this.router = Router();
-        this.use(setupResponses) // Falta esto
+        this.use(setupResponses) 
     };
 
     getRouter = () => this.router;
