@@ -1,0 +1,37 @@
+{
+  "name": "plantilladocumentacion",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --watch src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "mocha test/supertest.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@handlebars/allow-prototype-access": "^1.0.5",
+    "bcrypt": "^6.0.0",
+    "chai": "^5.2.0",
+    "compress": "^0.99.0",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.1",
+    "jsonwebtoken": "^9.0.2",
+    "mocha": "^11.7.1",
+    "mongoose": "^8.16.1",
+    "multer": "^2.0.1",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
+    "supertest": "^7.1.1"
+  }
+}
