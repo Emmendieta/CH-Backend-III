@@ -10,11 +10,11 @@
     <form id="registerForm">
         <div class="mb-3">
             <label for="inputFirstNameRegister" class="form-label">First Name:</label>
-            <input type="text" class="form-control" id="inputFirstNameRegister">
+            <input type="text" class="form-control" id="inputFirstNameRegister" value ="{{#if user}}{{user.first_name}}{{/if}}">
         </div>
         <div class="mb-3">
             <label for="inputLastNameRegister" class="form-label">Last Name:</label>
-            <input type="text" class="form-control" id="inputLastNameRegister">
+            <input type="text" class="form-control" id="inputLastNameRegister" value ="{{#if user}}{{user.last_name}}{{/if}}">
         </div>
         <div id="registerFormDivBtns">
             <a class="btn btn-outline-success" type="submit" id="btnGoBack" href="/profile">Go Back</a>

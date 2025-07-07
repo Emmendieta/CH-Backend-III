@@ -5,7 +5,11 @@
 <div id="usersDivHead">
     <h1 id="usersDivH1">Users List</h1>
 </div>
+<section id="usersSectBtnAdd">
+    <div id="usersDivBtnAdd">
 
+    </div>
+</section>
 <section>
     <ul id="usersGrid">
         {{#each users}}
@@ -13,12 +17,16 @@
             <div class="card usersDivCard">
                 <div class="card-body">
                     <div class="usersUlLiDiv">
+                        <h3 class="usersUlLih3">Id:</h3>
+                        <h3 class="card-text usersUlLih3" id="usersId">{{this._id}}</h3>
+                    </div>
+                    <div class="usersUlLiDiv">
                         <h3 class="usersUlLih3">First Name:</h3>
                         <h3 class="card-text usersUlLih3" id="usersTitleId">{{this.first_name}}</h3>
                     </div>
                     <div class="usersUlLiDiv">
                         <h3 class="usersUlLih3">Last Name:</h3>
-                        <h3 class="card-text usersUlLih3">{{this.last_name}}</h3>
+                        <h3 class="card-text usersUlLih3" id="usersLastName">{{this.last_name}}</h3>
                     </div>
                     <div class="usersUlLiDiv">
                         <h3 class="usersUlLih3">Email:</h3>
@@ -30,6 +38,9 @@
                     </div>
                     <div class="usersUlLiDiv">
                         <a href="/details/{{this._id}}" class="btn btn-primary">More Details</a>
+                    </div>
+                    <div class="userUlLiDivAdmin">
+
                     </div>
                 </div>
             </div>

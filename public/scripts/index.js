@@ -2,11 +2,10 @@ window.addEventListener("DOMContentLoaded", async () => {
     try {
         const opts = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            
+            headers: { "Content-Type": "application/json" }            
         };
-
-        const responseRaw = await fetch("/api/auth/current", opts);
+        let url = "/api/auth/current";
+        const responseRaw = await fetch(url, opts);
         if (!responseRaw.ok) return;
 
         const response = await responseRaw.json();

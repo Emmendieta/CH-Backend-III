@@ -9,7 +9,7 @@ class UsersController {
 
     createUser = async (req, res) => {
         const data = req.body;
-        if(!data || !data.first_name || !data.last_name || !data.email || !data.password) { res.json400("Missgin Information!"); };
+        if (!data || !data.first_name || !data.last_name || !data.email || !data.password) { res.json400("Missgin Information!"); };
         const passHass = createHash(data.password);
         data.password = passHass;
         const response = await this.uService.createOne(data);
@@ -20,15 +20,15 @@ class UsersController {
         const { id } = req.params;
         if (!isValidObjectId(id)) { res.json400("Invalid user Id!"); };
         const response = await this.uService.readById(id);
-        if(!response) { res.json404("User not Found!"); };
+        if (!response) { res.json404("User not Found!"); };
         res.json200(response);
     };
 
     getUserByFilter = async (req, res) => {
         const { email } = req.params;
-        if(!email) { return res.json404("Error getting the email!"); };
+        if (!email) { return res.json404("Error getting the email!"); };
         const response = await this.uService.readByFilter({ email });
-        if(!response) { res.json404("User not Found!"); };
+        if (!response) { res.json404("User not Found!"); };
         res.json200(response);
     };
 
@@ -45,17 +45,31 @@ class UsersController {
         if (!data) { return res.json400("No data to update!"); };
         const verifyUser = await this.uService.readById(_id);
         if (!verifyUser) { return res.json404("User not Found!"); };
-        const response = await this.uService.updateById(_id, data) ;
+        const response = await this.uService.updateById(_id, data);
+        res.json200(response);
+    };
+
+    updateUserAdmin = async (req, res) => {
+        const { uid } = req.params;
+        const data = req.body;
+        if (!isValidObjectId(uid)) { return res.json400("Invalid user Id!"); };
+        if (!data) { return res.json400("No data to update!"); };
+        const passHass = createHash(data.password);
+        data.password = passHass;
+        console.log(data);
+        const verifyUser = await this.uService.readById(uid);
+        if (!verifyUser) { return res.json404("User not Found!"); };
+        const response = await this.uService.updateById(uid, data);
         res.json200(response);
     };
 
     deleteUser = async (req, res) => {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) { res.json400("Invalid user Id!"); };
-        const user = await this.uService.readById(id);
-        if(!user) { return res.json400("User not Found!"); };
+        const { uid } = req.params;
+        if (!isValidObjectId(uid)) { res.json400("Invalid user Id!"); };
+        const user = await this.uService.readById(uid);
+        if (!user) { return res.json400("User not Found!"); };
         //FALTA IMPLEMENTAR QUE NO SE PUEDA BORRAR UN USUARIO SI TIENE PETS
-        const response = await this.uService.deleteById(id);
+        const response = await this.uService.destroyById(uid);
         res.json200(response);
     };
 };

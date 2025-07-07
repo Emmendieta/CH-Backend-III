@@ -1,0 +1,38 @@
+<head>
+    <link rel="stylesheet" href="/css/register.css">
+</head>
+
+<div id="registerDivHead">
+    <h1 id="registerDivH1">Update User</h1>
+</div>
+
+<div id="registerDivForm">
+    <form id="registerForm">
+        <div class="mb-3">
+            <label for="inputFirstNameRegister" class="form-label">Id:</label>
+            <input type="text" class="form-control" id="inputIdRegister" value="{{#if user}}{{user._id}}{{/if}}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="inputFirstNameRegister" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="inputFirstNameRegister" value="{{#if user}}{{user.first_name}}{{/if}}">
+        </div>
+        <div class="mb-3">
+            <label for="inputLastNameRegister" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="inputLastNameRegister" value="{{#if user}}{{user.last_name}}{{/if}}">
+        </div>
+        <div class="mb-3">
+            <label for="inputEmailRegister" class="form-label">Email:</label>
+            <input type="email" class="form-control" id="inputEmailRegister" aria-describedby="emailHelp" value="{{#if user}}{{user.email}}{{/if}}" disabled>
+        </div>
+        <div class="mb-3">
+            <label for="inputPasswordRegister" class="form-label">Password:</label>
+            <input type="password" class="form-control" id="inputPasswordRegister" value="{{#if user}}{{user.password}}{{/if}}">
+        </div>
+        <div id="registerFormDivBtns">
+            <a class="btn btn-outline-success" type="button" id="btnGoBack" value="Home" href="/users">Go Back</a>
+            <a class="btn btn-outline-success" type="button" id="btnUpdateUser"> Update User</a>
+        </div>
+    </form>
+</div>
+
+<script src="/scripts/editUser.js"></script>

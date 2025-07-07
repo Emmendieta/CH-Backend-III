@@ -57,3 +57,12 @@
 .card-text {
     font-size: 15px;
 }
+
+#usersDivBtnAdd {
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px 0 25px 0;
+
+}
+
+
