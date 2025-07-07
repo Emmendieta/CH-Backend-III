@@ -1,4 +1,5 @@
 const divNavBarButtons = document.getElementById("navBarButtons");
+const btnSearch = document.getElementById("btnSearch");
 
 const verifyCurrent = async () => {
     try {
@@ -45,3 +46,8 @@ const verifyCurrent = async () => {
 };
 
 verifyCurrent();
+
+btnSearch.addEventListener("click", (event) => {
+    event.preventDefault();
+    alert("Function not avalible, please try again later!");
+});
