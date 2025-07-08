@@ -9,22 +9,17 @@ const schema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: { type: String, default: 'user' },
-    pets: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Pets',
-        default: []
-    }]
-    /*     pets: {
-            type: [
-                { 
-                    _id: { 
-                        type: mongoose.Schema.Types.ObjectId,
-                        ref: 'Pets'
-                    }
+    pets: {
+        type: [
+            {
+                _id: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'Pets'
                 }
-            ],
-            default: []
-        } */
+            }
+        ],
+        default: []
+    }
 });
 
 const userModel = model(collection, schema);
