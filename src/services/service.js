@@ -1,3 +1,4 @@
+import { usersRepository, petsRepository, adoptionRepository } from "../repositories/repository.js";
 class Service {
     constructor(repository) {
         this.repository = repository;
@@ -10,4 +11,8 @@ class Service {
     destroyById = async (pid) => await this.repository.destroyById(pid);
 };
 
-export default Service;
+const userService = new Service(usersRepository);
+const petsService = new Service(petsRepository);;
+const adoptionsService = new Service(adoptionRepository);
+
+export { userService, petsService, adoptionsService };

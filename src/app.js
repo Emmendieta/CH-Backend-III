@@ -29,18 +29,22 @@ const ready = async () => {
 
 app.engine("handlebars", engine({
     helpers: {
-        formatDate: (date) => moment(date).format("YYYY-MM-DD"),
+        formatDate: (date) => moment(date).format("YYYY-MM-DD")
     },
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    }
 }));
 app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "../views")); 
+app.set("views", path.join(__dirname, "../views"));
 
 /* Middlewares Settings */
 
 app.use(compression());
 app.use(cookieParser(process.env.SECRET));
 app.use(express.json());
-app.use(express.urlencoded( { extended: true } ));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(morgan("dev"));
 

@@ -8,10 +8,10 @@ class DaoMongo {
     }
     createOne = async (data) => await this.model.create(data);
     createMany = async (data) => await this.model.insertMany(data);
-    readAll = async (filter) => await this.model.find(filter).lean();
-    readById = async (id) => await this.model.findOne({ _id: id }).lean();
-    readByFilter = async (filter) => await this.model.findOne(filter).lean();
-    updateById = async (id, data) => await this.model.findByIdAndUpdate(id, data, { new: true }).lean();
+    readAll = async (filter) => await this.model.find(filter);
+    readById = async (id) => await this.model.findById(id);
+    readByFilter = async (filter) => await this.model.findOne(filter);
+    updateById = async (id, data) => await this.model.findByIdAndUpdate(id, data, { new: true });
     destroyById = async (id) => await this.model.findByIdAndDelete(id);
 };
 

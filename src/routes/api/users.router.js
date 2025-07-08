@@ -14,6 +14,7 @@ class UserRouter extends RouterHelper {
         this.update("/:uid", ["user", "admin"], usersController.updateUser);
         this.update("/admin/:uid", ["admin"], usersController.updateUserAdmin);
         this.destroy("/:uid", ["admin"], usersController.deleteUser);
+        this.read("/:uid/pets", ["user", "admin"], usersController.getUserPets);
     };
 };
 

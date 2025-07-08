@@ -20,9 +20,9 @@ class AdoptionsController {
         if (!pet) { return res.json404("Pet not Found!"); };
         if (pet.adopted) { return res.json400("Pet is alredy adopted!"); };
         user.pets.push(pet._id);
-        const responseUser = await this.uService.updateById(uid, { pets: user.pets });
+        const responseUser = await this.uService.updateOneById(uid, { pets: user.pets });
         if(!responseUser) { return res.json404("Couldn't update Users Pets!"); };
-        const responsePet = await this.pService.updateById(pid, { adopted: true, owner: uid });
+        const responsePet = await this.pService.updateOneById(pid, { adopted: true, owner: uid });
         if (!responsePet) { return res.json404("Couldn't update Pet!"); };
         const responseAdoption = await this.aService.createOne({ owner: uid, pet: pid });
         if (!responseAdoption) { return res.json404("Couldn't create Adoption!"); };
@@ -43,6 +43,13 @@ class AdoptionsController {
         res.json200(adoptions);
     };
 
+    updateAdiptionById = async (req, res) => {
+        //FALTA LOGICA
+    };
+    
+    deleteAdoption = async (req, res) => {
+        //FALTA LOGICA
+    };
 
 };
 

@@ -42,7 +42,7 @@ class PetsController {
         if (!data) { return res.json400("No data to update!"); };
         const verifyPet = await this.pService.readById(pid);
         if (!verifyPet) { return res.json404("Pet not Found!"); };
-        const response = await this.pService.updateById(pid, data);
+        const response = await this.pService.updateOneById(pid, data);
         res.json200(response);
     };
 

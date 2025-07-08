@@ -1,12 +1,16 @@
 import { usersRepository } from "../repositories/repository.js";
-import Service from "./service.js";
 
-class UserService extends Service {
+class UserService {
     constructor() {
-        super(usersRepository);
+        this.manager = usersRepository;
     };
-    //Métodos particulares de Users:
-
+    // Metodos particualr de UserService:
+    createOne = async (data) => await this.manager.createOne(data);
+    readAll = async () => await this.manager.readAll();
+    readById = async (uid) => await this.manager.readById(uid);
+    readByFilter = async (filter) => await this.manager.readByFilter(filter);
+    updateOneById = async (uid, data) => await this.manager.updateById(uid, data);
+    destroyById = async (uid) => await this.manager.destroyById(uid);
 };
 
 const usersService = new UserService(usersRepository);
