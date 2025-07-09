@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                         let data = {
                             owner: uid,
                             pet: pid,
-                            newOwner : newUid,
-                            newPet : newPid
+                            newOwner: newUid,
+                            newPet: newPid
                         };
                         let opts = {
                             method: "PUT",
@@ -33,13 +33,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                         };
                         let url = `/api/adoptions/${aid}`;
                         let response = await fetch(url, opts);
-                        /*                          if (!response.ok) { 
-                                                    alert("Couldn't update the adoption!");
-                                                    return;
-                                                } else {
-                                                    location.reload();
-                                                    return;
-                                                } */
+                        if (!response.ok) {
+                            alert("Couldn't update the adoption!");
+                            return;
+                        } else {
+                            alert("Adoption updated!");
+                            location.reload();
+                            return;
+                        }
                     }
                 });
             }

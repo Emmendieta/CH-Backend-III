@@ -14,9 +14,9 @@ class PetsController {
     };
 
     getPetById = async (req, res) => {
-        const { id } = req.params;
-        if (!isValidObjectId(id)) { return res.json400("Invalid pet Id!"); };
-        const response = await this.pService.readById(id);
+        const { pid } = req.params;
+        if (!isValidObjectId(pid)) { return res.json400("Invalid pet Id!"); };
+        const response = await this.pService.readById(pid);
         if(!response) { res.json404("Pet not Found!"); };
         res.json200(response);
     };
@@ -51,7 +51,7 @@ class PetsController {
         if(!isValidObjectId(pid)) { return res.json400("Invalid pet Id!"); };
         const pet = await this.pService.readById(pid);
         if (!pet) { return res.json404("Pet not Found!"); };
-        //Falta la logica que si se elimina un pet se tiene que eliminar de la lista del usuario que lo tenga
+        if (pet.owner !== null) { return res.json400("Couldn't delete a pet that has an owner!"); };
         const response = await this.pService.destroyById(pid);
         if (!response) { return res.json404("Couldn't delete the Pet!"); };
         res.json200(response);

@@ -2,7 +2,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     try {
         const opts = {
             method: "POST",
-            headers: { "Content-Type": "application/json" }            
+            headers: { "Content-Type": "application/json" }
         };
         let url = "/api/auth/current";
         const responseRaw = await fetch(url, opts);
@@ -40,26 +40,42 @@ window.addEventListener("DOMContentLoaded", async () => {
                     if (!confirmDelete) return;
 
                     try {
-                        const deleteOpts = {
-                            method: "DELETE",
-                            headers: { "Content-Type": "application/json" },
-                            credentials: "include"
+                        let opts = {
+                            method: "GET",
+                            headers: { "Content-Type": "application/json" }
                         };
-                        const deleteRes = await fetch(`/api/pets/${pid}`, deleteOpts);
-                        const result = await deleteRes.json();
-
-                        if (result.error?.message) {
-                            alert(result.error.message);
+                        console.log(pid)
+                        let url = `/api/pets/${pid}`;
+                        let response = await fetch(url, opts);
+                        if (!response.ok) {
+                            alert("Couldn't get pet information!");
+                            return;
                         } else {
-                            alert("Pet Deleted!");
-                            location.reload();
+                            response = await response.json();
+                            if (response.response.adopted === true) {
+                                alert("Couldn't delete a pet that has been adopted!");
+                                return;
+                            } else {
+                                const deleteOpts = {
+                                    method: "DELETE",
+                                    headers: { "Content-Type": "application/json" },
+                                    credentials: "include"
+                                };
+                                const deleteRes = await fetch(`/api/pets/${pid}`, deleteOpts);
+                                const result = await deleteRes.json();
+                                if (result.error?.message) {
+                                    alert(result.error.message);
+                                } else {
+                                    alert("Pet Deleted!");
+                                    location.reload();
+                                }
+                            }
                         }
                     } catch (error) {
                         console.log(error.message);
                         alert("An error occurred while deleting the pet!");
                     }
                 });
-
                 const adminControls = document.createElement("div");
                 adminControls.className = "d-flex justify-content-end mt-2";
                 adminControls.appendChild(editButton);

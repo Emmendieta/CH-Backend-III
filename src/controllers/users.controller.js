@@ -69,7 +69,7 @@ class UsersController {
         if (!isValidObjectId(uid)) {return res.json400("Invalid user Id!"); };
         const user = await this.uService.readById(uid);
         if (!user) { return res.json400("User not Found!"); };
-        //FALTA IMPLEMENTAR QUE NO SE PUEDA BORRAR UN USUARIO SI TIENE PETS
+        if (user.pets.length > 0) { return res.json400("Couldn't delete an user that has pets adopted!"); };
         const response = await this.uService.destroyById(uid);
         res.json200(response);
     };
