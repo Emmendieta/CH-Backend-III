@@ -67,6 +67,6 @@ async function deleteUser(uid, fistName = "", lastName = "") {
             }
         }
     } catch (error) {
-        console.log("Error trying to delete the user!", error);
+        console.error("Error trying to delete the user!", error);
     }
 };

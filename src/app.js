@@ -13,6 +13,7 @@ import compression from 'compression';
 import dbConnect from './helpers/dbConnect.helper.js';
 import moment from 'moment';
 import { setupSwaager } from './swagger.js';
+import logger from './config/logger.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -20,10 +21,10 @@ const PORT = process.env.PORT || 8000;
 const ready = async () => {
     if (process.env.PERSISTENCE === "mongo") {
         await dbConnect(process.env.LINK_MONGODB);
-        console.log(`Server ready on port ${PORT} in mode: ${argvsHelper.mode}`);
+        logger.info(`Server ready on port ${PORT} in mode: ${argvsHelper.mode}`);
     }
-    else if (process.env.PERSISTENCE === "fs") { console.log("Métodos pendientes para fs!"); }
-    else { console.log("Métodos pendientes para memory!"); }
+    else if (process.env.PERSISTENCE === "fs") { logger.info("Métodos pendientes para fs!"); }
+    else { logger.info("Métodos pendientes para memory!"); }
 };
 
 /* Engine Settings */

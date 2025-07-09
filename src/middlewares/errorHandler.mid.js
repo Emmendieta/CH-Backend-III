@@ -1,5 +1,7 @@
+import logger from "../config/logger.js"
+
 const errorHandler = (error, req, res, next) => {
-    console.log(error);
+    logger.error(error);
     const message = error.message || "Server Error!";
     const data = {
         method: req.method,

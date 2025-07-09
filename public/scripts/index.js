@@ -72,7 +72,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                             }
                         }
                     } catch (error) {
-                        console.log(error.message);
+                        console.error(error.message);
                         alert("An error occurred while deleting the pet!");
                     }
                 });
@@ -84,6 +84,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             });
         }
     } catch (error) {
-        console.log("Error verifying user role:", error);
+        console.error("Error verifying user role:", error);
     }
 });

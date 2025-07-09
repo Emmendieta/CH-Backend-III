@@ -36,7 +36,7 @@ document.getElementById("btnUpdate").addEventListener("click", async () => {
         }
 
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         alert("Ooooppsss! An error has ocurred. Error: " + error.message);
     }
 });

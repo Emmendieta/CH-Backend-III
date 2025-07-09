@@ -49,12 +49,12 @@ const verifyCurrent = async () => {
                     localStorage.removeItem("token");
                     location.replace("/")
                 } catch (error) {
-                    console.log(error); /* ---------- MODIFICAR ESTO PARA WINSTON!!! ---------- */
+                    console.error(error); 
                 }
             });
         };
     } catch (error) {
-        console.log(error); /* ---------- MODIFICAR ESTO PARA WINSTON!!! ---------- */
+        console.error(error); 
     }
 };
 

@@ -135,7 +135,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                                 }
                             }
                         } catch (error) {
-                            console.log(error.message);
+                            console.error(error.message);
                             alert("Ooooppsss! An error has ocurred. Error: " + error.message);
                         }
                     });
@@ -146,6 +146,6 @@ window.addEventListener("DOMContentLoaded", async () => {
             }
         }
     } catch (error) {
-        console.log("Error verifying user role:", error);
+        console.error("Error verifying user role:", error);
     }
 });

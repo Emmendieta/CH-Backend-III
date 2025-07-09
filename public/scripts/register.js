@@ -25,7 +25,7 @@ document.getElementById("btnRegister").addEventListener("click", async () => {
             location.replace(`/`);
         }
     } catch (error) {
-        console.log(error.message);
+        console.error(error.message);
         alert("Ooooppsss! An error has ocurred. Error: " + error.message);
     }
 });
