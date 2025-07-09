@@ -12,6 +12,7 @@ import errorHandler from './middlewares/errorHandler.mid.js';
 import compression from 'compression';
 import dbConnect from './helpers/dbConnect.helper.js';
 import moment from 'moment';
+import { setupSwaager } from './swagger.js';
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -52,6 +53,8 @@ app.listen(PORT, ready);
 
 /* Router Settings */
 
+setupSwaager(app);
 app.use("/", indexRouter);
 app.use(pathHandler);
 app.use(errorHandler);
+
