@@ -12,9 +12,9 @@ window.addEventListener("DOMContentLoaded", async () => {
             return;
         } else {
             const res = await response.json();
-            const pid = document.getElementById("petId").innerText;
-            const h3Owner = document.getElementById("petOwner").innerText;
-            const h3Adpoted = document.getElementById("petAdopted").innerText;
+            const pid = document.getElementById("petId").innerText.trim();
+            const h3Owner = document.getElementById("petOwner").innerText.trim();
+            const h3Adpoted = document.getElementById("petAdopted").innerText.trim();
             //En el caso de que la mascota este adoptada, desactivo el boton de adoptar:
             if (h3Owner.length > 0 && h3Adpoted === "true") {
                 btnAdopt.disabled = true;
@@ -27,15 +27,16 @@ window.addEventListener("DOMContentLoaded", async () => {
                 alert("Couldn´t get pet id!");
                 return;
             } else {
-                const uid = res.response._id;
+                let adminId = res.response._id;
                 const userRole = res.response.role;
                 opts = {
                     method: "POST",
                     headers: { "Content-Type": "application/json" }
                 };
-                url = `/api/adoptions/${uid}/${pid}`;
                 //Evento para cuando se hace click en adoptar:
                 btnAdopt.addEventListener("click", async () => {
+                    let uid = adminId;
+                    url = `/api/adoptions/${uid}/${pid}`;
                     response = await fetch(url, opts);
                     if (!response.ok) {
                         alert("Error adoption pet, please try again later!");
@@ -72,6 +73,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                             method: "GET",
                             headers: { "Content-Type": "application/json" }
                         };
+                        let uid = h3Owner;
                         url = `/api/adoptions/${uid}/${pid}`;
                         response = await fetch(url, opts);
                         if (!response.ok) {
@@ -86,8 +88,8 @@ window.addEventListener("DOMContentLoaded", async () => {
                             };
                             url = `/api/adoptions/${aid}`;
                             response = await fetch(url, opts);
-                            if (!response.ok) { 
-                                alert ("Couldn't get the information of the adoption!");
+                            if (!response.ok) {
+                                alert("Couldn't get the information of the adoption!");
                                 return;
                             } else {
                                 url = `/adoptions/${aid}`;
@@ -105,6 +107,7 @@ window.addEventListener("DOMContentLoaded", async () => {
                                     method: "GET",
                                     headers: { "Content-Type": "application/json" }
                                 };
+                                let uid = h3Owner;
                                 url = `/api/adoptions/${uid}/${pid}`;
                                 response = await fetch(url, opts);
                                 if (!response.ok) { return; }

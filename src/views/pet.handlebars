@@ -24,7 +24,7 @@
         </div>
         <div class="newPetUlLiDiv">
             <h3 class="newPetUlLih3">Adopted: </h3>
-            <input type="checkbox" id="newPetUlLihAdopted" {{#if pet.adopted}}checked{{/if}}>
+            <input type="checkbox" id="newPetUlLihAdopted" {{#if pet.adopted}}checked{{/if}} disabled>
         </div>
         <div class="newPetUlLiDiv">
             <h3 class="newPetUlLih3">Specie: </h3>
@@ -32,7 +32,7 @@
         </div>
         <div class="newPetUlLiDiv">
             <h3 class="newPetUlLih3">Owner: </h3>
-            <input type="text" id="newPetUlLihOwner" value="{{#if pet.owner}}{{pet.owner}}{{/if}}">
+            <input type="text" id="newPetUlLihOwner" value="{{#if pet.owner}}{{pet.owner}}{{/if}}" disabled>
         </div>
         <div class="newPetUlLiDivBottom">
             <button class="btn btn-outline-success" id="btnCreatePet">{{#if pet}}Update Pet{{else}}Create

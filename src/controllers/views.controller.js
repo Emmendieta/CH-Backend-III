@@ -56,6 +56,18 @@ class ViewsController {
         res.status(200).render("users", { users });
     };
 
+    userPetsViews = async (req, res) => {
+        const { user } = req;
+        const uid = user._id.toString();
+        let userBD = await this.uService.readById(uid);
+        if (!user) { res.json404("Couldn't get user info").render("error"); };
+        if (!user.pets || user.pets.length === 0) { return res.json404("Not pets associate to the user!").render("error"); };
+        const petsIds = userBD.pets.map(p => p._id.toString());
+        const pets = await Promise.all(petsIds.map(pid => this.pService.readById(pid)));
+        console.log(pets);
+        res.status(200).render("user-pets", { pets });
+    }
+
     /*AUTH VIEWS */
 
     loginView = async (req, res) => res.status(200).render("login");
@@ -76,18 +88,25 @@ class ViewsController {
         const { uid } = req.params;
         if (!isValidObjectId(uid)) { return res.status(400).render("error", { error: "Invalid user Id!" }); };
         const user = await this.uService.readById(uid);
-        if (!user) { return res.status(404).render("error", { error: "User not Found!"}); };
+        if (!user) { return res.status(404).render("error", { error: "User not Found!" }); };
         res.status(200).render("user", { user });
     };
 
-    editAdoption = async (req, res) => {
+    /* ADOPTIONS */
+
+    editAdoptionView = async (req, res) => {
         const { aid } = req.params;
-        if (!isValidObjectId(aid)) { return res.status(400). render("error", { error: "Invalid adoptation id!"}); };
+        if (!isValidObjectId(aid)) { return res.status(400).render("error", { error: "Invalid adoptation id!" }); };
         const adoption = await this.aService.readById(aid);
-        if (!adoption) { return res.status(404).render("error", { error: "Adoption not Found!"}); };
+        if (!adoption) { return res.status(404).render("error", { error: "Adoption not Found!" }); };
         res.status(200).render("adoption", { adoption });
     };
 
+    getAllAdoptionsView = async(req, res) => {
+        const adoptions = await this.aService.readAll();
+        if (adoptions.length === 0) { return res.status(404).render("error", { error: "No adoptions fund!"}); };
+        return res.status(200).render("adoptions", { adoptions });
+    }
 };
 
 const viewsController = new ViewsController();

@@ -74,21 +74,6 @@ class UsersController {
         res.json200(response);
     };
 
-    getUserPets = async (req, res) => {
-/*         const { uid } = req.params;
-        if (!isValidObjectId(uid)) { return res.json400("Invalid user Id!"); };
-        const user = await this.uService.readByIdPopulatePets(uid);
-        if (!user) { return res.json404("User not found!"); };
-        let petsUser = user.pets;
-        if (!petsUser || petsUser.length === 0) { return json404("The User has not Pets adopted!"); }
-        else {
-            for (const pet of petsUser) {
-                console.log(pet._id);
-                //const response = await this.pService.readById(pet._id);
-            };
-        } */
-    };
-
 };
 
 const usersController = new UsersController();

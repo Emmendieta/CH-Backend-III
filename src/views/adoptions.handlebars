@@ -1,0 +1,31 @@
+<head>
+    <link rel="stylesheet" href="/css/adoptions.css">
+</head>
+
+<div id="adoptionsDivHead">
+    <h1 id="adoptionsDivH1">Adoptions List</h1>
+</div>
+<section>
+    <ul id="adoptionsGrid">
+        {{#each adoptions}}
+        <li>
+            <div class="card" style="width: 18rem;" id="adoptionsDivCard">
+                <div class="card-body">
+                    <div class="adoptionsUlLiDiv">
+                        <h3 class="adoptionsUlLih3">Id: </h3>
+                        <h3 class="card-textv adoptionsUlLih3" id="adoptionsTitleId">{{this._id}}</h3>
+                    </div>
+                    <div class="adoptionsUlLiDiv">
+                        <h3 class="adoptionsUlLih3">Owner Id: </h3>
+                        <h3 class="card-textv adoptionsUlLih3">{{this.owner}}</h3>
+                    </div>
+                    <div class="adoptionsUlLiDiv">
+                        <h3 class="adoptionsUlLih3">Pet Id: </h3>
+                        <h3 class="card-textv adoptionsUlLih3">{{this.pet}}</h3>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</section>
