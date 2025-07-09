@@ -74,10 +74,18 @@ class ViewsController {
 
     updateViewAdmin = async (req, res) => {
         const { uid } = req.params;
-        if (!isValidObjectId(uid)) { return res.status(404).render("error", { error: "Invalid user Id!" }); };
+        if (!isValidObjectId(uid)) { return res.status(400).render("error", { error: "Invalid user Id!" }); };
         const user = await this.uService.readById(uid);
         if (!user) { return res.status(404).render("error", { error: "User not Found!"}); };
         res.status(200).render("user", { user });
+    };
+
+    editAdoption = async (req, res) => {
+        const { aid } = req.params;
+        if (!isValidObjectId(aid)) { return res.status(400). render("error", { error: "Invalid adoptation id!"}); };
+        const adoption = await this.aService.readById(aid);
+        if (!adoption) { return res.status(404).render("error", { error: "Adoption not Found!"}); };
+        res.status(200).render("adoption", { adoption });
     };
 
 };

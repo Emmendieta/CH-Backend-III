@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="/css/editAdoption.css">
+</head>
+
+<div id="newAdoptionDivTitle">
+    <section id="newAdoptionDivSectTop">
+        <h2 id="newAdoptionh2Title">Edit Adoption</h2>
+    </section>
+    <section id="newAdoptionDivSectMiddle">
+        <div class="newAdoptionUlLiDiv">
+            {{#if adoption}}
+            <input id="adiptionId" value="{{adoption._id}}" disabled>
+            {{/if}}
+            <h3 class="newAdoptionUlLih3">Owner Id: </h3>
+            <input type="text" id="adoptionOwnerId" value="{{#if adoption}}{{adoption.owner}}{{/if}}">
+        </div>
+        <div class="newAdoptionUlLiDiv">
+            <h3 class="newAdoptionUlLih3">Pet Id: </h3>
+            <input type="text" id="adoptionPetId" value="{{#if adoption}}{{adoption.pet}}{{/if}}">
+        </div>
+        <div class="newAdoptionUlLiDivBottom">
+            <a class="btn btn-outline-success" href="/">Home</a>
+            <button class="btn btn-outline-success" id="btnEditAdoption">Update Adoption</button>
+        </div>
+    </section>
+</div>
+
+<script src="/scripts/adoption.js"></script>

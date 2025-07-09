@@ -10,7 +10,10 @@ class AdoptionRouter extends RouterHelper {
     init = () => {
         this.read("/", ["admin"], adoptionsController.getAllAdoptions);
         this.read("/:aid", ["user", "admin"], adoptionsController.getADoptionById);
+        this.read("/:uid/:pid", ["user", "admin"], adoptionsController.getAdoptionByIdUserPet);
         this.create("/:uid/:pid", ["user", "admin"], adoptionsController.createAdoption);
+        this.update("/:aid", ["admin"], adoptionsController.updateAdiptionById);
+        this.destroy("/:aid", ["admin"], adoptionsController.deleteAdoption);
     };
 };
 

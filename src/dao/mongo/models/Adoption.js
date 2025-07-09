@@ -1,18 +1,19 @@
+import { Schema, model } from "mongoose";
 import mongoose from "mongoose";
 
 const collection = 'Adoptions';
 
-const schema = new mongoose.Schema({
+const schema = new Schema({
     owner: {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Users'
     },
     pet: {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Pets'
     }
 });
 
-const adoptionModel = mongoose.model(collection, schema);
+const adoptionModel = model(collection, schema);
 
 export default adoptionModel;

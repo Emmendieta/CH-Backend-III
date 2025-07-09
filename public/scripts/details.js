@@ -15,35 +15,131 @@ window.addEventListener("DOMContentLoaded", async () => {
             const pid = document.getElementById("petId").innerText;
             const h3Owner = document.getElementById("petOwner").innerText;
             const h3Adpoted = document.getElementById("petAdopted").innerText;
-            //En caso de que este adoptado, no se hace nada:
-            if (h3Owner.length !== 0 && h3Adpoted === "true") {
-                return;
-                //En el caso de que no este adoptado y este logueado, puedo adoptarlo:
+            //En el caso de que la mascota este adoptada, desactivo el boton de adoptar:
+            if (h3Owner.length > 0 && h3Adpoted === "true") {
+                btnAdopt.disabled = true;
+                btnAdopt.innerText = "Pet alredy adopted!";
             } else {
-                //Si no se reconoce el id de la mascota:
-                if (pid.length === 0) {
-                    alert("Couldn´t get pet id!");
-                    return;
-                } else {
-                    btnAdopt.disabled = false;
-                    const uid = res.response._id;
-                    opts = {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" }
+                btnAdopt.disabled = false;
+            }
+            //Si no se reconoce el id de la mascota:
+            if (pid.length === 0) {
+                alert("Couldn´t get pet id!");
+                return;
+            } else {
+                const uid = res.response._id;
+                const userRole = res.response.role;
+                opts = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" }
+                };
+                url = `/api/adoptions/${uid}/${pid}`;
+                //Evento para cuando se hace click en adoptar:
+                btnAdopt.addEventListener("click", async () => {
+                    response = await fetch(url, opts);
+                    if (!response.ok) {
+                        alert("Error adoption pet, please try again later!");
+                        return;
+                    } else {
+                        alert("Pet adopted! :)");
+                        location.reload();
+                        return;
+                    }
+                });
+                //En el caso de que usuario se admin, puede editar eliminar las adopciones:
+                if (userRole === "admin") {
+                    const detailBottom = document.getElementById("divBottomButtons");
+                    //Boton Editar:
+                    const editAdoptionButton = document.createElement("button");
+                    editAdoptionButton.className = "btn btn-outline-success";
+                    editAdoptionButton.id = "editAdoptionButton";
+                    editAdoptionButton.innerText = "Edit Adoption";
+                    editAdoptionButton.disabled = true;
+                    //Boton Eliminar:
+                    const deleteAdoptionButton = document.createElement("button");
+                    deleteAdoptionButton.className = "btn btn-outline-danger";
+                    deleteAdoptionButton.id = "delteAdoptionButton";
+                    deleteAdoptionButton.innerText = "Delete Adoption";
+                    deleteAdoptionButton.disabled = true;
+                    //En caso de que La mascota este adotpada se habilitan los botones:
+                    if (h3Adpoted === "true" && h3Owner.length > 0) {
+                        editAdoptionButton.disabled = false;
+                        deleteAdoptionButton.disabled = false;
                     };
-                    url = `/api/adoptions/${uid}/${pid}`;
-                    //Evento para cuando se hace click en adoptar:
-                    btnAdopt.addEventListener("click", async () => {
+                    //Evento para editar a una adopcion:
+                    editAdoptionButton.addEventListener("click", async () => {
+                        opts = {
+                            method: "GET",
+                            headers: { "Content-Type": "application/json" }
+                        };
+                        url = `/api/adoptions/${uid}/${pid}`;
                         response = await fetch(url, opts);
-                        if (!response.ok) { 
-                            alert("Error adoption pet, please try again later!");
+                        if (!response.ok) {
+                            alert("Couldn't get id from the adoption!");
                             return;
                         } else {
-                            alert("Pet adopted! :)");
-                            location.reload();
+                            response = await response.json();
+                            const aid = response.response._id;
+                            opts = {
+                                method: "GET",
+                                headers: { "Content-Type": "application/json" }
+                            };
+                            url = `/api/adoptions/${aid}`;
+                            response = await fetch(url, opts);
+                            if (!response.ok) { 
+                                alert ("Couldn't get the information of the adoption!");
+                                return;
+                            } else {
+                                url = `/adoptions/${aid}`;
+                                location.replace(url);
+                            }
                         }
                     });
-                }
+                    //Evento para eliminar a una adopcion:
+                    deleteAdoptionButton.addEventListener("click", async () => {
+                        try {
+                            const confirmDelete = confirm(`Are you sure you want to delete the Adption???`);
+                            if (!confirmDelete) { return; }
+                            else {
+                                opts = {
+                                    method: "GET",
+                                    headers: { "Content-Type": "application/json" }
+                                };
+                                url = `/api/adoptions/${uid}/${pid}`;
+                                response = await fetch(url, opts);
+                                if (!response.ok) { return; }
+                                else {
+                                    response = await response.json();
+                                    let aid = response.response._id;
+                                    const data = {
+                                        uid: uid,
+                                        pid: pid
+                                    }
+                                    opts = {
+                                        method: "DELETE",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify(data)
+                                    };
+                                    url = `/api/adoptions/${aid}`;
+                                    response = await fetch(url, opts);
+                                    if (!response.ok) {
+                                        alert("Couldn't Delelte adoption!");
+                                        return;
+                                    } else {
+                                        alert("Adoption deleted!");
+                                        location.reload();
+                                    }
+                                }
+                            }
+                        } catch (error) {
+                            console.log(error.message);
+                            alert("Ooooppsss! An error has ocurred. Error: " + error.message);
+                        }
+                    });
+                    //Agrego los botones al handlebars:
+                    detailBottom.appendChild(editAdoptionButton);
+                    detailBottom.appendChild(deleteAdoptionButton);
+                };
             }
         }
     } catch (error) {
