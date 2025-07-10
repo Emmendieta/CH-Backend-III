@@ -59,3 +59,5 @@ app.use("/", indexRouter);
 app.use(pathHandler);
 app.use(errorHandler);
 
+export default app;
+
