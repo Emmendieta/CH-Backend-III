@@ -25,6 +25,8 @@ class ViewsRouter extends RouterHelper {
         /*ADOPTIONS*/
         this.render("/adoptions/:aid", ["admin"], viewsController.editAdoptionView);
         this.render("/adoptions", ["admin"], viewsController.getAllAdoptionsView);
+        /*TEST*/
+        this.render("/test", ["public"], viewsController.testView);
     };
 };
 

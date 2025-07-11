@@ -2021,3 +2021,5 @@
 [34minfo[39m: MESSAGE: [34mConecting to MongoDB, please wait[39m, DATE: [10/07/2025, 08:29:13 p. m.]
 [34minfo[39m: MESSAGE: [34mConected to MongoDB[39m, DATE: [10/07/2025, 08:29:13 p. m.]
 [33mwarn[39m: MESSAGE: [33mDisconected from MongoDB[39m, DATE: [10/07/2025, 08:29:14 p. m.]
+[34minfo[39m: MESSAGE: [34mConnected To MongoDB![39m, DATE: [10/07/2025, 08:33:18 p. m.]
+[34minfo[39m: MESSAGE: [34mServer ready on port 8080 in mode: dev[39m, DATE: [10/07/2025, 08:33:18 p. m.]

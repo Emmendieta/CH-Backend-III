@@ -7,7 +7,8 @@
     "start": "node --watch src/app.js",
     "dev": "nodemon src/app.js",
     "test": "cross-env PERSISTENCE=mongo mocha 'src/test/**/*.test.js' --timeout 10000",
-    "test2":  "nodemon --exec \"mocha\""
+    "test2": "nodemon --exec \"mocha\"",
+    "load:test": "artillery run src/test/test.yml"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
   "dependencies": {
     "@faker-js/faker": "^9.9.0",
     "@handlebars/allow-prototype-access": "^1.0.5",
+    "artillery": "^2.0.23",
     "bcrypt": "^6.0.0",
     "chai": "^5.2.0",
     "commander": "^14.0.0",

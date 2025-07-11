@@ -3,6 +3,7 @@ import usersService from "../services/user.service.js";
 import adoptionsService from "../services/adoptions.service.js";
 import { isValidObjectId } from "mongoose";
 import moment from "moment";
+import logger from "../config/logger.js";
 
 class ViewsController {
     constructor() {
@@ -106,7 +107,12 @@ class ViewsController {
         const adoptions = await this.aService.readAll();
         if (adoptions.length === 0) { return res.status(404).render("error", { error: "No adoptions fund!"}); };
         return res.status(200).render("adoptions", { adoptions });
-    }
+    };
+
+    testView = async(req, res) => {
+        logger.http("Ruta solicita /test");
+        res.send("Ruta de test");
+    };
 };
 
 const viewsController = new ViewsController();

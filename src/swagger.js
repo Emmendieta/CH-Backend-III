@@ -8,7 +8,7 @@ const options = {
             title: 'App Adopted a Pet',
             version: '1.0.0',
             description: 'Generacion de la documentacion de los endpoints requeridos para la entrega final',
-            termsOfService: 'https://mi-dominio.com/terminos', //VER ESTO
+            termsOfService: 'https://mi-dominio.com/terminos',
             contact: {
                 name: "Emiliano Manuel Mendieta",
                 email: "emmendieta12@gmail.com",
@@ -24,7 +24,7 @@ const options = {
                 description: 'Local Server',
             },
             {
-                url: 'https://mi-dominio.com', //VER ESTO
+                url: 'https://mi-dominio.com', 
                 description: 'Production Server',
             }
         ]
